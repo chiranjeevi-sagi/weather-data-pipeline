@@ -29,14 +29,35 @@ This is an end-to-end data pipeline that fetches daily weather data for UK citie
 
 ---
 
-## 📸 Dashboard Preview
----
-
----
-
 ## 🧪 Setup Instructions
 
 1. **Clone the repository**
    ```bash
-   git clone 
+   git clone https://github.com/chiranjeevi-sagi/weather-data-pipeline.git
    cd weather-data-pipeline
+
+2. **Create your .env file**
+   ```bash
+   cp .env.example .env
+
+Then open .env and update the passwords of your choice and replace with your API key.
+
+Sign in/Create account on open weather website and copy your API key. You can get your API key from  [here](https://openweathermap.org/current). 
+
+3. **Start the services**
+   ```bash
+   docker compose up --build
+
+4. **Access the tools**
+- **Airflow:** http://localhost:8080
+- **pgAdmin:** http://localhost:5050
+- **Metabase:** http://localhost:3000
+
+For logging in, use your credentials set in your .env file.
+
+Run your DAGs using Airflow, Query your Database using pgAdmin and Visualize your data using Metabase.
+
+Congratulations on completing your ETL project!
+
+## Credits
+Built by [Chiranjeevi Sagi](https://github.com/chiranjeevi-sagi)
