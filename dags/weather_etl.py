@@ -6,9 +6,10 @@ import psycopg2
 import os
 
 
-# Set your API key and city
+# Retrieve API key from environment variable (set via Docker Compose)
 API_KEY = os.getenv("OPENWEATHER_API_KEY")
-#list 10 cities in UK you want data about
+
+# List of major UK cities with coordinates for accurate weather data
 UK_CITIES = [
     {"name": "London", "lat": 51.5074, "lon": -0.1278},
     {"name": "Birmingham", "lat": 52.4862, "lon": -1.8904},
@@ -23,7 +24,7 @@ UK_CITIES = [
 ]
 
 
-# Fetch weather data from OpenWeatherMap
+# Function to fetch current weather data from OpenWeatherMap
 def fetch_weather(lat, lon, city_name):
     url = f"https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API_KEY}&units=metric"
     response = requests.get(url)
@@ -46,10 +47,11 @@ def fetch_weather(lat, lon, city_name):
     return weather
 
 
-
+# Function to connect to PostgreSQL and store weather data
 def store_weather():
     import logging
 
+    # Connect to PostgreSQL container (host is service name in Docker Compose)
     conn = psycopg2.connect(
         host="postgres",
         database="weatherdb",
@@ -60,9 +62,11 @@ def store_weather():
 
     for city in UK_CITIES:
         try:
+            # Fetch and log weather data
             weather = fetch_weather(city["lat"], city["lon"], city["name"])
             logging.info(f"Fetched weather for {city['name']}: {weather}")
 
+            # Insert weather data into the weather table
             insert_query = """
             INSERT INTO weather (city, temperature, humidity, weather_description, date)
             VALUES (%s, %s, %s, %s, %s)
@@ -84,11 +88,12 @@ def store_weather():
     conn.close()
 
 
-# Airflow DAG setup
+# Define Airflow DAG
 default_args = {
     "start_date": datetime(2024, 1, 1),
 }
 
+# DAG definition: runs daily and triggers weather fetch/store task
 with DAG(
     dag_id="weather_etl",
     schedule_interval="@daily",

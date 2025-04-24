@@ -1,5 +1,6 @@
 
 services:
+  # PostgreSQL Database for storing weather data
   postgres:
     image: postgres:13
     environment:
@@ -14,6 +15,7 @@ services:
     networks:
       - airflow_net
 
+  # pgAdmin for visual management of PostgreSQL
   pgadmin:
     image: dpage/pgadmin4
     environment:
@@ -26,6 +28,7 @@ services:
     networks:
       - airflow_net
 
+  # Apache Airflow for scheduling and ETL logic
   airflow:
     image: apache/airflow:2.9.1-python3.11
     restart: always
@@ -50,6 +53,7 @@ services:
     networks:
       - airflow_net
 
+  # Metabase for dashboard and visualization
   metabase:
     image: metabase/metabase
     ports:
@@ -59,8 +63,10 @@ services:
     networks:
       - airflow_net
 
+# Define named volumes for persistence
 volumes:
   postgres_data:
 
+# Define shared Docker network
 networks:
   airflow_net:
