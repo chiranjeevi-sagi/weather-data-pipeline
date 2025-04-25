@@ -19,7 +19,7 @@ This is an end-to-end data pipeline that fetches daily weather data for UK citie
 
 ---
 
-## 🚀 Features
+### 🚀 Features
 
 - Fetches real-time weather data for major UK cities using lat/lon
 - Inserts weather data into a normalized Postgres schema
@@ -28,6 +28,11 @@ This is an end-to-end data pipeline that fetches daily weather data for UK citie
 - Clean dashboard via Metabase
 
 ---
+### Visual architecture
+
+<p align="left">
+  <img src="images/project_architecture_diagram.png" alt="project architecture diagram" width="50%" height="50%">
+</p>
 
 ## 🧪 Setup Instructions
 
