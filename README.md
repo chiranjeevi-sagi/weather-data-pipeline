@@ -28,11 +28,13 @@ This is an end-to-end data pipeline that fetches daily weather data for UK citie
 - Clean dashboard via Metabase
 
 ---
+
 ### Visual architecture
 
 <p align="center">
   <img src="images/project_architecture_diagram.png" alt="project architecture diagram" width="75%" height="75%">
 </p>
+
 ---
 
 ## 🧪 Setup Instructions
