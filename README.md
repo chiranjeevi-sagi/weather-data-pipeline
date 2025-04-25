@@ -30,9 +30,10 @@ This is an end-to-end data pipeline that fetches daily weather data for UK citie
 ---
 ### Visual architecture
 
-<p align="left">
-  <img src="images/project_architecture_diagram.png" alt="project architecture diagram" width="50%" height="50%">
+<p align="center">
+  <img src="images/project_architecture_diagram.png" alt="project architecture diagram" width="75%" height="75%">
 </p>
+---
 
 ## 🧪 Setup Instructions
 
