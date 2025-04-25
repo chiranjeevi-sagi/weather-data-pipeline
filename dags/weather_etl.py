@@ -28,15 +28,7 @@ UK_CITIES = [
 def fetch_weather(lat, lon, city_name):
     url = f"https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API_KEY}&units=metric"
     response = requests.get(url)
-    
-    if response.status_code != 200:
-        raise Exception(f"API request failed with status code {response.status_code}: {response.text}")
-    
     data = response.json()
-    
-    if 'main' not in data or 'weather' not in data:
-        raise Exception(f"Missing expected data in API response: {data}")
-    
     weather = {
         "city": city_name,
         "temperature": data["main"]["temp"],
@@ -54,9 +46,9 @@ def store_weather():
     # Connect to PostgreSQL container (host is service name in Docker Compose)
     conn = psycopg2.connect(
         host="postgres",
-        database="weatherdb",
-        user="airflow",
-        password="airflow"
+        database= os.getenv("POSTGRES_DB"),
+        user= os.getenv("POSTGRES_USER"),
+        password= os.getenv("POSTGRES_PASSWORD")
     )
     cur = conn.cursor()
 
