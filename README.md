@@ -65,6 +65,8 @@ For logging in, use your credentials set in your .env file.
 
 Run your DAGs using Airflow, Query your Database using pgAdmin and Visualize your data using Metabase.
 
+Want to checkout a demo of this project? go to : https://youtu.be/w9Ke-BMettc
+
 Congratulations on completing your ETL project!
 
 ## Credits
